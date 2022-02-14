@@ -65,26 +65,30 @@ handleChange = (id) => {
   shortenURL = title => {
     const newURL = {    id: uuidv4(),    title: title,    completed: false  };
     this.getShorten(title)
-    .then((data) => {
-    console.log('data', data)
-    //this.setState({    todos: [...this.state.todos, data]  });
-    })
-    .catch((e) => {
-    console.log('error', e)
-    })
+    // .then((data) => {
+    // console.log('data', data)
+    // })
+    // .catch((e) => {
+    // console.log('error', e)
+    // })
   };
 
   getShorten = async url => {
     const response = await axios.post(
       'https://api.bely.me/links',
-      {url: 'https://google.com/' },
+      {url: url },
       {
       headers: {
         'GB-Access-Token': '8a68b5e50d8c084a30b1f5f7ee66e7dc'
       }})
 
     console.log('response ', response.data);
-    this.setState({    todos: [...this.state.todos, response.data]  });
+    const newShortURL =    {
+         id: uuidv4(),
+         title: response.data.short_url,
+         completed: false
+       }
+    this.setState({    todos: [...this.state.todos, newShortURL]  });
   };
 
 
