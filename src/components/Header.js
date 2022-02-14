@@ -3,7 +3,8 @@ import React from "react"
 const Header = () => {
   return (
     <header>
-      <h1>todos</h1>
+      <h1>URL Shorterner</h1>
+      <h5> Enter your URL here: </h5>
     </header>
   )
 }
