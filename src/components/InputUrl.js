@@ -22,6 +22,9 @@ class InputUrl extends Component {
 
   render() {
     return (
+      <>
+      <h5> Enter your URL here: </h5>
+
       <form onSubmit={this.handleSubmit}>
       <input
         type="text"
@@ -32,6 +35,8 @@ class InputUrl extends Component {
       />
         <button>Submit</button>
       </form>
+
+      </>
     )
   }
 }
