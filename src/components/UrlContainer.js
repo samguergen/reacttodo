@@ -24,10 +24,7 @@ class UrlContainer extends React.Component {
     .then(
       (response) => {
         const pastShortURLs = response.data
-        console.log('pastShortURLs ', pastShortURLs);
         this.setState({    urls: pastShortURLs  });
-        // this.setState({    urls: [...this.state.urls, pastShortURLs]  });
-        console.log('this.state.urls ', this.state.urls);
       },
       (error) => {
         console.log(error)
@@ -75,26 +72,26 @@ class UrlContainer extends React.Component {
   deleteShorten = async slug => {
       const response = await axios.delete(
         'https://api.bely.me/links/' + slug,
-        {
-        headers: {
-          'GB-Access-Token': '8a68b5e50d8c084a30b1f5f7ee66e7dc'
-        }})
+        { headers: { 'GB-Access-Token': '8a68b5e50d8c084a30b1f5f7ee66e7dc'}
+      })
 
     };
 
 
-    addUrlItem = url => {
-      this.postShorten(url)
+    addUrlItem = (url, slug) => {
+      this.postShorten(url, slug)
     };
 
-    postShorten = async url => {
+    postShorten = async (url, slug) => {
+      let postBody = { url: url };
+      if (slug && slug.length > 0) {
+        postBody.slug = slug
+      }
       const response = await axios.post(
         'https://api.bely.me/links',
-        {url: url },
-        {
-        headers: {
-          'GB-Access-Token': '8a68b5e50d8c084a30b1f5f7ee66e7dc'
-        }})
+        postBody,
+        { headers: { 'GB-Access-Token': '8a68b5e50d8c084a30b1f5f7ee66e7dc'}
+      })
 
       console.log('response ', response.data);
       this.setState({    urls: [...this.state.urls, response.data]  });
