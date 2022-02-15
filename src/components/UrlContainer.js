@@ -53,21 +53,39 @@ class UrlContainer extends React.Component {
     })
     };
 
+  delUrlItem = url => {
+    this.deleteShorten(url)
+    .then(
+      (response) => {
+          this.setState({
+            urls: [
+              ...this.state.urls.filter(
+                url => {
+                  return url.slug !== url;
+                })
+              ]
+            });
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  };
 
-    delUrl = id => {
-      this.setState({
-        urls: [
-          ...this.state.urls.filter(
-            url => {
-              return url.id !== id;
-            })
-          ]
-        });
+  deleteShorten = async slug => {
+      const response = await axios.delete(
+        'https://api.bely.me/links/' + slug,
+        {
+        headers: {
+          'GB-Access-Token': '8a68b5e50d8c084a30b1f5f7ee66e7dc'
+        }})
+
+      console.log('response ', response.data);
     };
 
 
-    addUrlItem = title => {
-      this.postShorten(title)
+    addUrlItem = url => {
+      this.postShorten(url)
     };
 
     postShorten = async url => {
@@ -95,7 +113,7 @@ class UrlContainer extends React.Component {
           <UrlsList
           urls={this.state.urls}
           handleChangeProps={this.handleChange}
-          deleteUrlProps={this.delUrl}/>
+          deleteUrlProps={this.delUrlItem}/>
         </div>
       );
     }
