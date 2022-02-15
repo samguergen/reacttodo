@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-class InputTodo extends Component {
+class InputUrl extends Component {
 
   state = {
     fName: "Sam",
@@ -16,7 +16,7 @@ class InputTodo extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addTodoProps(this.state.title); //bubble up
+    this.props.addUrlProps(this.state.title); //bubble up
     this.setState({    title: ""  }); //refresh in curr state
   };
 
@@ -25,7 +25,7 @@ class InputTodo extends Component {
       <form onSubmit={this.handleSubmit}>
       <input
         type="text"
-        placeholder="Add todo..."
+        placeholder="Add url..."
         value={this.state.title}
         name="title"
         onChange={this.onChange}
@@ -35,4 +35,4 @@ class InputTodo extends Component {
     )
   }
 }
-export default InputTodo
+export default InputUrl
