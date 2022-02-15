@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+h1, h3, h5 {
+  text-align: center;
+}
+
 .url-container {
   background: pink;
   padding: 5%;
@@ -19,4 +23,22 @@ code {
 
 .submit-btn, .del-btn {
   margin: 1%;
+}
+.submit-btn {
+  margin-top: 8% !important;
+}
+.form-url {
+  border: 1px solid white;
+  background: #c88e98;
+  padding: 1%;
+  margin: 2% auto !important;
+  width: 90%;
+}
+.list-group {
+  text-align: center;
+}
+.list-group-item {
+  background: #ebb6c0;
+  width: 90%;
+  margin: auto;
 }

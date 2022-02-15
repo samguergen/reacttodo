@@ -1,5 +1,6 @@
 import React from "react"
 import UrlItem from "./UrlItem";
+import {ListGroup, Row, Col} from 'react-bootstrap';
 
 class UrlsList extends React.Component {
   render() {
@@ -8,13 +9,13 @@ class UrlsList extends React.Component {
 
         <h5> List of Previous URLS: </h5>
 
-        <ul>
+        <ListGroup>
           {
             this.props.urls.map(url => (
             <UrlItem key={url.slug} url={url} handleChangeProps={this.props.handleChangeProps}   deleteUrlProps={this.props.deleteUrlProps}/>
             ))
           }
-        </ul>
+        </ListGroup>
 
       </>
     )
