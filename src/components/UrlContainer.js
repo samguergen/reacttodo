@@ -65,18 +65,12 @@ class UrlContainer extends React.Component {
         });
     };
 
-    addUrlItem = title => {
-      const newUrl = {    id: uuidv4(),    title: title,    completed: false  };
-      this.setState({    urls: [...this.state.urls, newUrl]  });
-    };
 
-    shortenURL = title => {
-      const newURL = {    id: uuidv4(),    title: title,    completed: false  };
+    addUrlItem = title => {
       this.postShorten(title)
     };
 
     postShorten = async url => {
-
       const response = await axios.post(
         'https://api.bely.me/links',
         {url: url },
@@ -86,12 +80,7 @@ class UrlContainer extends React.Component {
         }})
 
       console.log('response ', response.data);
-      const newShortURL =    {
-           id: uuidv4(),
-           title: response.data.short_url,
-           completed: false
-         }
-      this.setState({    urls: [...this.state.urls, newShortURL]  });
+      this.setState({    urls: [...this.state.urls, response.data]  });
     };
 
 
@@ -101,7 +90,7 @@ class UrlContainer extends React.Component {
       return (
         <div>
           <Header />
-          <InputUrl addUrlProps={this.postShorten} />
+          <InputUrl addUrlProps={this.addUrlItem} />
 
           <UrlsList
           urls={this.state.urls}

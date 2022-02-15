@@ -3,9 +3,7 @@ import React, { Component } from "react"
 class InputUrl extends Component {
 
   state = {
-    fName: "Sam",
-    lastName: "Guerg",
-    title: "test",
+    title: "",
   }
 
   onChange = e => {
