@@ -53,18 +53,30 @@ class UrlContainer extends React.Component {
     })
     };
 
-  delUrlItem = url => {
-    this.deleteShorten(url)
+  delUrlItem = slug => {
+    console.log('slug ', slug);
+    this.deleteShorten(slug)
     .then(
       (response) => {
+        console.log('delete success ', response);
           this.setState({
             urls: [
               ...this.state.urls.filter(
                 url => {
-                  return url.slug !== url;
+                  return url.slug !== slug;
                 })
               ]
             });
+
+          // this.setState({
+          //   urls: [
+          //     this.state.urls.filter(
+          //       url => {
+          //         return url.slug !== url;
+          //       })
+          //     ]
+          //   });
+            console.log('this.state.urls ', this.state.urls);
       },
       (error) => {
         console.log(error)
