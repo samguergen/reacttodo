@@ -54,11 +54,9 @@ class UrlContainer extends React.Component {
     };
 
   delUrlItem = slug => {
-    console.log('slug ', slug);
     this.deleteShorten(slug)
     .then(
       (response) => {
-        console.log('delete success ', response);
           this.setState({
             urls: [
               ...this.state.urls.filter(
@@ -67,16 +65,6 @@ class UrlContainer extends React.Component {
                 })
               ]
             });
-
-          // this.setState({
-          //   urls: [
-          //     this.state.urls.filter(
-          //       url => {
-          //         return url.slug !== url;
-          //       })
-          //     ]
-          //   });
-            console.log('this.state.urls ', this.state.urls);
       },
       (error) => {
         console.log(error)
@@ -92,7 +80,6 @@ class UrlContainer extends React.Component {
           'GB-Access-Token': '8a68b5e50d8c084a30b1f5f7ee66e7dc'
         }})
 
-      console.log('response ', response.data);
     };
 
 
